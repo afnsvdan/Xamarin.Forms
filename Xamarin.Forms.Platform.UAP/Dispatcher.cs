@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Xamarin.Forms;
@@ -13,6 +14,17 @@ namespace Xamarin.Forms.Platform.UWP
 		public void BeginInvokeOnMainThread(Action action)
 		{
 			_coreDispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action()).WatchForError();
+		}
+
+		public override bool Equals(object obj)
+		{
+			return obj is Dispatcher dispatcher &&
+				   EqualityComparer<CoreDispatcher>.Default.Equals(_coreDispatcher, dispatcher._coreDispatcher);
+		}
+
+		public override int GetHashCode()
+		{
+			return 736870076 + EqualityComparer<CoreDispatcher>.Default.GetHashCode(_coreDispatcher);
 		}
 
 		public Dispatcher()
