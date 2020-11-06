@@ -1,0 +1,47 @@
+<ListView x:Name="maps_list"
+                      ItemsSource="{Binding AllMaps}"
+                      HasUnevenRows="True"
+                      SeparatorVisibility="None"
+                      ItemTapped="maps_list_ItemTapped"
+                      AbsoluteLayout.LayoutBounds="0.5, 1, 1, 0.88" AbsoluteLayout.LayoutFlags="All">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <SwipeView BackgroundColor="White">
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="УДАЛИТЬ"
+                                                    BackgroundColor="Red"/>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <SwipeView.Content>
+                                    <Grid Padding="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Grid.Column="0" VerticalOptions="Center" Padding="10" Orientation="Horizontal">
+                                            <StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Image Source="{local:ImageResource HunterMaps.Images.point.png}" HeightRequest="20" WidthRequest="20"/>
+                                                    <Label Text="{Binding Name}" FontSize="16" TextColor="Black" FontAttributes="Bold"/>
+                                                </StackLayout>
+                                                <Label Text="{Binding Description}" FontSize="12" TextColor="Black"/>
+                                            </StackLayout>
+                                            <StackLayout  Grid.Column="1" Padding="0" Margin="0">
+                                                <Label/>
+                                                <Button Text="{Binding Status}" BackgroundColor="{Binding Color}" Clicked="Button_Clicked" FontSize="14" WidthRequest="80" Padding="0" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="23" TextColor="Black" FontAttributes="Bold" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <BoxView HeightRequest="1" BackgroundColor="Black" Grid.Row="1" Grid.ColumnSpan="2" Margin="0"/>
+                                    </Grid>
+                                </SwipeView.Content>
+                            </SwipeView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
